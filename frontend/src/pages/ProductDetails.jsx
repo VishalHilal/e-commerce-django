@@ -43,7 +43,7 @@ export default function ProductDetails(){
 			<p>{product.price}</p>
 			<p>{product.description}</p>
 			<button className='border-2 p-2 bg-green-400'> add to cart </button>
-
+				<a href='/' className='text-blue-600 hover:underline ml-4'>back to home</a>
 			</div>
 		)}
 		
