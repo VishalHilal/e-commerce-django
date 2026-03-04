@@ -41,7 +41,7 @@ export default function ProductDetails() {
           <p>{product.price}</p>
           <p>{product.description}</p>
           <button
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart(product.id)}
             className="border-2 p-2 bg-green-400"
           >
             {" "}

@@ -1,12 +1,9 @@
 import { useCart } from "../context/CartContext";
 
 export default function CartPage() {
-  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  const { cartItems, total, removeFromCart, updateQuantity } = useCart();
+  const BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
 
   return (
     <div>
@@ -15,11 +12,19 @@ export default function CartPage() {
       ) : (
         <div className="ml-12">
           {cartItems.map((item) => (
-            <>
-              <div key={item.id}>
-                <h2>{item.name}</h2>
+            <div key={item.id}>
+              <div>
+                <h2>{item.product_name}</h2>
+                <div>
+                  {item.product_image && (
+                    <img
+                      src={`${BASE_URL}${item.product_image}`}
+                    />
+
+                  )}
+                </div>
                 <br />
-                <p>{item.price}</p>
+                <p>{item.product_price}</p>
               </div>
               <div>
                 <button className="border-1 bg-red-200 p-2"
@@ -36,7 +41,7 @@ export default function CartPage() {
                 </button>
                 <button onClick={() => removeFromCart(item.id)}>remove</button>
               </div>
-            </>
+            </div>
           ))}
         </div>
       )}
